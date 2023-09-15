@@ -1,19 +1,11 @@
 const http = require('http')
+const fs = require('fs')
 
 
 let server = http.createServer((req, res) => {
   res.writeHead(200, {'content-type' : 'text/html; charset=utf-8'})
-  res.end(`<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Node JS</title>
-  </head>
-  <body>
-      <p>Hello, dog!</p>
-  </body>
-  </html>`)
+  const stream = fs.createReadStream('./templates/index.html')
+  stream.pipe(res)
 })
 
 const PORT = 3001
