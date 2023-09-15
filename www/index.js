@@ -2,16 +2,18 @@ const express = require('express')
 
 const app = express()
 
+app.set('view engine', 'ejs')
+
 app.get('/', (req, res) => {
-    res.send('This is homePage')
+    res.render('index')
 })
 
 app.get('/about', (req, res) => {
-    res.send('about us')
+    res.render('about')
 })
 
-app.get('/user/:name/:id', (req, res) => {
-    res.send(`user id: ${req.params.id}  name: ${req.params.name}`)
+app.get('/user/:name', (req, res) => {
+    res.render('user', {username : req.params.name})
 })
 
 app.listen(3001, () => {
